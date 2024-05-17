@@ -2,7 +2,7 @@
 --// Made by @dementia enjoyer
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "homohack", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "DontLetThatHappen", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 --// Defined
 
