@@ -1,0 +1,41 @@
+local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
+
+local Window = Library:CreateWindow('Index Hub', 'Legends of Speed', 'Index Hub', 'rbxassetid://10618928818', false, 'Index Hub', 'Default')
+
+local LibraryFunctions = Window:CreateTab('Settings', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local UIFunctions = LibraryFunctions:CreateSection('UI Functions')
+
+local DestroyButton = UIFunctions:CreateButton('Destroy UI', function()
+    Library:DestroyUI()
+end)
+
+local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'RightControl', function()
+    Library:ToggleUI()
+end)
+
+local TransparencySlider = UIFunctions:CreateSlider('Transparency', 0, 100, 0, Color3.fromRGB(0, 125, 255), function(Value)
+    Library:SetTransparency(Value / 100, true)
+end)
+
+local ThemesSection = LibraryFunctions:CreateSection('Themes')
+
+local ThemesDropdown = ThemesSection:CreateDropdown('Themes', Library:GetThemes(), nil, 0.25, function(Value)
+    Library:ChangeTheme(Value)
+end)
+
+local ColorSection = LibraryFunctions:CreateSection('Custom Colors')
+
+for Index, CurrentColor in next, Library:ReturnTheme() do
+    ColorSection:CreateColorpicker(Index, CurrentColor, 0.25, function(Color)
+        Library:ChangeColor(Index, Color)
+    end, {true})
+end
+
+local LibraryFunctions = Window:CreateTab('Main', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Index = LibraryFunctions:CreateSection('Main')
+
+local Button = Index:CreateButton('Level AutoFarm', function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptpastebin/raw/main/17"))()
+end)
