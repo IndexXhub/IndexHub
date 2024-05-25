@@ -1,14 +1,14 @@
-game.StarterGui:SetCore("SendNotification",{
-	Title = "Index Hub";
-	Text = "Made By someone";
-	Icon = "http://www.roblox.com/asset/?id=71987819";
-	Duration = 5;
-	Callback = NotificationBindable;
-})
-
+-----//This is Made by Kre3ze//-----
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "Index Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "IndexTest"})
+local Window = OrionLib:MakeWindow({Name = "Index Hub", HidePremium = false, IntroEnabled = true, IntroText = "Index Hub", IntroIcon = "http://www.roblox.com/asset/?id=951528747", SaveConfig = true, ConfigFolder = "IndexTest"})
+
+OrionLib:MakeNotification({
+	Name = "Index Hub",
+	Content = "Made By Someone",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
 
 ----//Upadte Logs//----
 local Tab = Window:MakeTab({
@@ -20,8 +20,6 @@ local Tab = Window:MakeTab({
 local Section = Tab:AddSection({
 	Name = "Upadte Logs"
 })
-
-Tab:AddLabel("Coming Soon")
 
 ----//Main//----
 local Tab = Window:MakeTab({
@@ -182,9 +180,12 @@ Tab:AddSlider({
     end    
 })
 
-local Section = Tab:AddSection({
-	Name = "Player Main"
-})
+Tab:AddButton({
+	Name = "Destroy GUI",
+	Callback = function()
+		OrionLib:Destroy()
+  	end    
+})	
 
 ----//Universal//----
 local Tab = Window:MakeTab({
@@ -1290,3 +1291,5 @@ Tab:AddLabel("Coming Soon")
 Tab:AddLabel("Coming Soon")
 Tab:AddLabel("Coming Soon")
 Tab:AddLabel("Coming Soon")
+
+OrionLib:Init()
