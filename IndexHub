@@ -1,6 +1,27 @@
+game.StarterGui:SetCore("SendNotification",{
+	Title = "Index Hub";
+	Text = "Made By someone";
+	Icon = "http://www.roblox.com/asset/?id=71987819";
+	Duration = 5;
+	Callback = NotificationBindable;
+})
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({Name = "Index Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "IndexTest"})
+
+----//Upadte Logs//----
+local Tab = Window:MakeTab({
+	Name = "Upadte Logs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Upadte Logs"
+})
+
+Tab:AddLabel("Coming Soon")
 
 ----//Main//----
 local Tab = Window:MakeTab({
@@ -10,18 +31,160 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-	Name = "Main Script"
+	Name = "Player Main"
 })
 
+Tab:AddParagraph("Index Hub","Everything is Tested Using Solara")
+Tab:AddLabel("Thanks For Using Index Hub")
+
 Tab:AddButton({
-	Name = "Unc Test",
+	Name = "UNC TEST",
 	Callback = function()
       	loadstring(game:HttpGet("https://github.com/ltseverydayyou/uuuuuuu/blob/main/UNC%20test?raw=true"))()
   	end    
 })
 
-Tab:AddLabel("This scipt is made by kre3ze.")
-Tab:AddLabel("Credits to .gg/Aqz5Q96bD6")
+local UserInputService = game:GetService("UserInputService")
+local Toggle = false
+
+local function toggleInfiniteJump(enabled)
+    Toggle = enabled
+end
+
+local function performInfiniteJump()
+    if Toggle then
+        game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+    end
+end
+
+toggleInfiniteJump(false)
+
+Tab:AddToggle({
+    Name = "INF JUMP",
+    Default = false,
+    Callback = function(Value)
+        toggleInfiniteJump(Value)
+    end    
+})
+
+UserInputService.JumpRequest:Connect(function()
+    performInfiniteJump()
+end)
+
+Tab:AddSlider({
+	Name = "WalkSpeed Changer",
+	Min = 16,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "WalkSpeed",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+	end    
+})
+
+Tab:AddSlider({
+	Name = "JumpPower Changer",
+	Min = 50,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "JumpPower",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = (Value)
+	end    
+})
+
+local Workspace = game.Workspace
+
+local function changeGravity(newGravity)
+    Workspace.Gravity = newGravity
+end
+
+changeGravity(196.2)
+
+Tab:AddSlider({
+    Name = "Gravity Slider",
+    Min = 0,
+    Max = 500,
+    Default = 196.2,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Gravity",
+    Callback = function(Value)
+        changeGravity(Value)
+    end    
+})
+
+Tab:AddButton({
+	Name = "Gravity Reset",
+	Callback = function()
+		changeGravity(196.2)
+  	end    
+})	
+
+local Section = Tab:AddSection({
+	Name = "Other Player"
+})
+
+local player = game.Players.LocalPlayer
+local camera = game.Workspace.CurrentCamera
+
+local function changeFOV(newFOV)
+    camera.FieldOfView = newFOV
+end
+
+changeFOV(70)
+
+Tab:AddSlider({
+	Name = "FOV Changer",
+	Min = 0,
+	Max = 120,
+	Default = 70,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "FOV",
+	Callback = function(Value)
+		changeFOV(Value)
+	end    
+})
+
+Tab:AddButton({
+	Name = "FOV Reset",
+	Callback = function()
+		changeFOV(70)
+  	end    
+})	
+
+local player = game.Players.LocalPlayer
+
+local function changeZoomLimits(minZoom, maxZoom)
+    player.CameraMinZoomDistance = minZoom
+    player.CameraMaxZoomDistance = maxZoom
+end
+
+local initialMinZoom = 10
+local initialMaxZoom = 50
+changeZoomLimits(initialMinZoom, initialMaxZoom)
+
+Tab:AddSlider({
+    Name = "Max Zoom Changer",
+    Min = 50,
+    Max = 2000000,
+    Default = initialMaxZoom,
+    Color = Color3.fromRGB(255, 255, 255),
+    Increment = 1,
+    ValueName = "Zoom",
+    Callback = function(Value)
+        changeZoomLimits(initialMinZoom, Value)
+    end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Player Main"
+})
 
 ----//Universal//----
 local Tab = Window:MakeTab({
@@ -86,7 +249,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Fly",
 	Callback = function()
-      	loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
   	end    
 })
 
@@ -193,6 +356,14 @@ Tab:AddButton({
 	Name = "Qp Hub",
 	Callback = function()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/QPScript/Script/main/Arsenal.txt"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Raven Hub(key: in clipboard)",
+	Callback = function()
+		setclipboard("RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kona3366/RavenSoftware/main/RavenHub.lua", true))()
   	end    
 })
 
@@ -361,15 +532,17 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Fiend Hub(key: KEY-SAGAD)",
+	Name = "Fiend Hub(key: in clipboard)",
 	Callback = function()
+        setclipboard("KEY-SAGAD")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Fiend1sh/FiendMain/main/FiendMainLoader", true))()
   	end    
 })
 
 Tab:AddButton({
-	Name = "Yago X(key: 6521d5s4das)",
+	Name = "Yago X(key: in clipboard)",
 	Callback = function()
+		setclipboard("6521d5s4das")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/pokelok/yagoX/main/main"))()
   	end    
 })
@@ -400,8 +573,9 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Astra Hub(key: OWRJ21kjhA2R)",
+	Name = "Astra Hub(key: in clipboard)",
 	Callback = function()
+		setclipboard("OWRJ21kjhA2R")
 		loadstring(game:HttpGet("https://pastebin.com/raw/0YezNNRh",true))()
   	end    
 })
@@ -522,6 +696,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Zell Hub(paste the link in the browser and join in)",
 	Callback = function()
+		setclipboard("https://www.roblox.com/groups/729213/fire-s-w-a-t#!/about")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxHackerProLuaStuff/zellhubnew/main/SCRIPTPRO.lua"))()
   	end    
 })
@@ -572,6 +747,13 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddButton({
+	Name = "Max Hub",
+	Callback = function()
+		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3f4c258405c294983a9b0e113dad3de7.lua"))()
+  	end    
+})
+
 ----//Evade//----
 local Tab = Window:MakeTab({
 	Name = "Evade",
@@ -594,6 +776,31 @@ Tab:AddButton({
 	Name = "Evade",
 	Callback = function()
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/9Strew/roblox/main/gamescripts/evade.lua'))()
+  	end    
+})
+
+----//Hide and Seek Extreme//----
+local Tab = Window:MakeTab({
+	Name = "Hide and Seek Extreme",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Hide and Seek Extreme Scripts"
+})
+
+Tab:AddButton({
+	Name = "Indestury",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/IndexXhub/IndexHub/main/sadas"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Frakki's Hub",
+	Callback = function()
+		loadstring(game:HttpGet('https://pastebin.com/raw/HAgidzUN'))();
   	end    
 })
 
@@ -697,8 +904,9 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Raven Hub(key: RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE)",
+	Name = "Raven Hub(key: in clipboard)",
 	Callback = function()
+		setclipboard("RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kona3366/RavenSoftware/main/RavenHub.lua", true))()
   	end    
 })
@@ -764,6 +972,14 @@ Tab:AddButton({
 	Name = "DarkWare",
 	Callback = function()
 	    loadstring(game:HttpGet(("https://raw.githubusercontent.com/Yarik312/DarkWare/main/MainLoader"), true))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Raven Hub(key: in clipboard)",
+	Callback = function()
+		setclipboard("RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kona3366/RavenSoftware/main/RavenHub.lua", true))()
   	end    
 })
 
@@ -885,9 +1101,10 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-	Name = "Raven Hub(key: RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE)",
+	Name = "Raven Hub(key: in clipboard)",
 	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))();
+		setclipboard("RAVENHUB_WykEN#;e2a{x3D~YMwvb%jsdkfe7xL$vgJQB,!yV@qE")
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kona3366/RavenSoftware/main/RavenHub.lua", true))()
   	end    
 })
 
@@ -916,6 +1133,20 @@ Tab:AddButton({
   	end    
 })
 
+Tab:AddButton({
+	Name = "CH Hub (Chapter 1)",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxHackingProject/CHHub/main/games/rainbow%20friends%20chapter%201.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "CH Hub (Chapter 2)",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxHackingProject/CHHub/main/games/rainbow%20friends%20chapter%202.lua"))()
+  	end    
+})
+
 ----//Sol's RNG//----
 local Tab = Window:MakeTab({
 	Name = "Sol's RNG",
@@ -930,6 +1161,7 @@ local Section = Tab:AddSection({
 Tab:AddButton({
 	Name = "Sol's RNG(key: vy5fBGS6nNUuJjgxWhCLpR)",
 	Callback = function()
+		setclipboard("vy5fBGS6nNUuJjgxWhCLpR")
 		loadstring(game:HttpGet(('https://pastefy.app/55pnwOy3/raw'),true))()
   	end    
 })
@@ -1004,3 +1236,57 @@ Tab:AddButton({
 		loadstring(game:HttpGet('https://raw.githubusercontent.com/sc0ttferren/robloxscripts/main/toh/sc0tt.lua'))()
   	end    
 })	
+
+----//The Strongest BattleGround//----
+local Tab = Window:MakeTab({
+	Name = "The Strongest BattleGround",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "The Strongest BattleGround Scripts"
+})
+
+Tab:AddButton({
+	Name = "LHUB",
+	Callback = function()
+		loadstring(game:HttpGet('https://pastebin.com/raw/zx3081xc'))()
+  	end    
+})	
+
+Tab:AddButton({
+	Name = "SumitScripts",
+	Callback = function()
+		loadstring(game:HttpGet("https://pastefy.app/v9VSOfM5/raw"))()
+  	end    
+})	
+
+----//Coming Soon//----
+local Tab = Window:MakeTab({
+	Name = "Coming Soon",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Coming Soon"
+})
+
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
+Tab:AddLabel("Coming Soon")
