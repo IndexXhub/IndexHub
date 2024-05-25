@@ -10,15 +10,15 @@ OrionLib:MakeNotification({
 	Time = 5
 })
 
-----//Upadte Logs//----
+----//Update Logs//----
 local Tab = Window:MakeTab({
-	Name = "Upadte Logs",
+	Name = "Update Logs",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
 local Section = Tab:AddSection({
-	Name = "Upadte Logs"
+	Name = "Update Logs"
 })
 
 ----//Main//----
