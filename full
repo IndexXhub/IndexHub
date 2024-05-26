@@ -1,0 +1,30 @@
+local Lighting = game:GetService("Lighting")
+
+local function applyFullBright()
+    Lighting.Brightness = 2
+    Lighting.FogEnd = 100000 
+    Lighting.GlobalShadows = false 
+    Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+    Lighting.Ambient = Color3.new(1, 1, 1) 
+    Lighting.EnvironmentDiffuseScale = 1
+    Lighting.EnvironmentSpecularScale = 1 
+end
+
+
+local function resetLighting()
+    Lighting.Brightness = 1
+    Lighting.FogEnd = 10000 
+    Lighting.GlobalShadows = true 
+    Lighting.OutdoorAmbient = Color3.new(0.5, 0.5, 0.5)
+    Lighting.Ambient = Color3.new(0, 0, 0) 
+    Lighting.EnvironmentDiffuseScale = 0.5
+    Lighting.EnvironmentSpecularScale = 0.5 
+end
+
+local function toggleFullBright(value)
+    if value then
+        applyFullBright()
+    else
+        resetLighting()
+    end
+end
